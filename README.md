@@ -5,7 +5,7 @@ Helps write better tape tests and better organize your test code.
 ##code
 
 ```
-var scotchTape = require('scotchTape');
+var scotchTape = require('scotch-tape');
 var test = scotchTape({options});
 ```
 
