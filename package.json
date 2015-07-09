@@ -1,0 +1,60 @@
+{
+  "name": "scotch-tape",
+  "description": "wrapper to write better tape tests",
+  "version": "0.1.0",
+  "author": "Rajesh Segu <rajesh.segu@gmail.com>",
+  "keywords": [
+    "tapejs",
+    "tape",
+    "scotch tape",
+    "scotch-tape",
+    "tape wrapper",
+    "testing",
+    "setup",
+    "teardown",
+    "before each",
+    "after each"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rajeshsegu/scotch-tape.git"
+  },
+  "bugs": {
+    "url": "https://github.com/rajeshsegu/scotch-tape/issues/new",
+    "email": "rajesh.segu@gmail.com"
+  },
+  "engines": {
+    "node": "0.10.x",
+    "npm": "2.x"
+  },
+  "licenses": "MIT",
+  "main": "scotch-tape.js",
+  "dependencies": {
+    "tape": "^4.0.0"
+  },
+  "devDependencies": {
+    "build-changelog": "^2.1.2",
+    "istanbul": "^0.3.13",
+    "jshint": "2.4.2",
+    "opn": "^2.0.0"
+  },
+  "scripts": {
+    "changelog-major": "build-changelog --major",
+    "changelog-minor": "build-changelog --minor",
+    "changelog-patch": "build-changelog --patch",
+    "cover": "istanbul cover --report cobertura --print detail tape -- test/index.js",
+    "example": "tape examples/scotch-tape-example.js",
+    "fast-test": "tape test/index.js",
+    "lint": "jshint --verbose --exclude-path .gitignore .",
+    "precommit": "npm test -s",
+    "prepush": "npm test -s",
+    "test": "npm run lint -s && npm run cover -s",
+    "view-cover": "istanbul report html && opn ./coverage/index.html"
+  },
+  "homepage": "https://github.com/rajeshsegu/scotch-tape#readme",
+  "directories": {
+    "example": "examples",
+    "test": "test"
+  },
+  "license": "MIT"
+}
