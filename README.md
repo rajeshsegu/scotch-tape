@@ -2,14 +2,14 @@
 
 Helps write better tape tests and better organize your test code. 
 
-##code
+## code
 
 ```
 var scotchTape = require('scotch-tape');
 var test = scotchTape({options});
 ```
 
-####Supported Options:
+#### Supported Options:
 
 * `setup` - called before any tests starts running.
 * `before` - called before every test run
