@@ -43,7 +43,7 @@
     "changelog-minor": "build-changelog --minor",
     "changelog-patch": "build-changelog --patch",
     "cover": "istanbul cover --report cobertura --print detail tape -- test/index.js",
-    "example": "tape examples/scotch-tape-example.js",
+    "example": "tape examples/scotch-tape.js",
     "fast-test": "tape test/index.js",
     "lint": "jshint --verbose --exclude-path .gitignore .",
     "precommit": "npm test -s",
