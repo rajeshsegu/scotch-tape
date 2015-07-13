@@ -1,3 +1,14 @@
+2015-07-13 - 0.2.0 (0b1ecc0)
+0b1ecc0 (HEAD -> master, origin/master) update example path
+d945425 scotch-tape examples
+311d0e1 test suite
+c8e7d9e test tape global asserts
+b1b7a10 test custom local asserts
+6c5150d test tape functionality
+3c71b61 scotch-tape custom asserts
+99d0735 0.1.1
+
+
 2015-07-09 - 0.1.1 (6af5434)
 6af5434 (HEAD, origin/master, origin/HEAD, master) fix decoration
 3fc0638 fix typo
