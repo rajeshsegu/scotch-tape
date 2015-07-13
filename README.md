@@ -1,6 +1,6 @@
 # scotch-tape
 
-Helps write better tape tests and better organize your test code. 
+Helps write adhesive tape tests and better organize your test code. 
 
 ## code
 
@@ -11,10 +11,11 @@ var test = scotchTape({options});
 
 #### Supported Options:
 
-* `setup` - called before any tests starts running.
-* `before` - called before every test run
-* `after` - called after every test run
-* `teardown` - called after all the tests are run
+* `setup` - **Optional** - called before any tests starts running
+* `before` - **Optional** -called before every test run
+* `after` - **Optional** -called after every test run
+* `teardown` - **Optional** -called after all the tests are run
+* `asserts` - **Optional** - custom local assertions
 
 ## scotch-tape flavor
 
@@ -25,35 +26,50 @@ var test = scotchTape({options});
 var scotchTape = require('scotch-tape');
 
 var test = scotchTape({
+  
   setup: function initialize(t) {
     console.log('setup');
     t.end();
   },
+  
   before: function beforeEach(t) {
     console.log('Before Each');
     t.end();
   },
+  
   after: function afterEach(t) {
     console.log('After Each');
     t.end();
   },
+  
   teardown: function cleanup(t) {
     console.log('teardown');
     t.end();
+  },
+  
+  asserts: {
+    isValidName: function customAssert(name) {
+      this.ok(name);
+      this.equal(name, 'test');
+    }
+    /* any number of custom local asserts*/
   }
 });
 ```
 #### Sample Tests
 ```
-test('Project Tests', function test(it) {
-  it('should pass 1', function should(t) {
+test('scotch-tape tests', function test(it) {
+  
+  it('should get called', function should(t) {
     t.ok(true);
     t.end();
   });
-  it('should pass 2', function should(t) {
-    t.ok(true);
+  
+  it('should support custom assert', function should(t) {
+    t.isValidName('test');
     t.end();
   });
+  
 });
 ```
 #### Console Output
@@ -79,25 +95,45 @@ teardown
 # ok
 ```
 
-## vanilla flavor
+## Custom Global Tape Asserts
 
-As the provided hooks are optional, not using them would mean you can fallback to vanilla tape js tests.
+You can overload tape js tests to include custom assertions.
 
 ```
 'use strict';
 
-var scotchTape = require('scotch-tape');
+var scotchTapeAsserts = require('scotch-tape/asserts');
 
-var test = scotchTape();
-test('Project Tests', function test(it) {
-  it('should pass 1', function should(t) {
-    t.ok(true);
+var scotchTape = scotchTapeAsserts({
+
+  typeOf: function verifyType(obj, type) {
+    this.equal(typeof obj, type);
+  },
+  
+  length: function verifyLength(obj, len) {
+    this.equal(obj.length, len);
+  }
+  
+});
+```
+#### Sample Tests
+```
+var runBasicTests = scotchTape();
+
+runBasicTests('Global Tape Asserts', function test(it) {
+
+  it('should handle type', function should(t) {
+    var a = 'segu';    
+    t.typeOf(a, 'string');
     t.end();
   });
-  it('should pass 2', function should(t) {
-    t.ok(true);
+  
+  it('should handle length', function should(t) {
+    var a = [1, 2, 3, 4];
+    t.length(a, 4);
     t.end();
   });
+  
 });
 
 ```
@@ -105,10 +141,10 @@ test('Project Tests', function test(it) {
 #### Console Output
 ```
 TAP version 13
-# Basic Tests > should pass 1
-ok 1 called
-# Basic Tests > should pass 2
-ok 2 called
+# Global Tape Asserts > should handle type
+ok 1 should be equal
+# Global Tape Asserts > should handle length
+ok 2 should be equal
 
 1..2
 # tests 2
@@ -117,5 +153,6 @@ ok 2 called
 # ok
 ```
 
+----------
 
 > ENJOY WRITING BETTER TESTS

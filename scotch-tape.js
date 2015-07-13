@@ -8,42 +8,40 @@ function scotchTape(options) {
   options = options || {};
 
   return function uTapeTest(prefix, run) {
+
+    function call(fn) {
+      return function callFn(t) {
+        expand(t, options.asserts);
+        fn.call(t, t);
+      };
+    }
+
     // Setup
-    if(options.setup) {
-      tape('setup', function before(t) {
-        options.setup.call(t, t);
-      });
+    if (options.setup) {
+      tape.test('setup', call(options.setup));
     }
 
     // Run Tests
     run(function it(name, fn) {
-      var test = tape;
+      var test = tape.test;
 
       // Before Each Test
-      if(options.before) {
-        test = before(test, function before(t) {
-          options.before.call(t, t);
-        });
+      if (options.before) {
+        test = before(test, call(options.before));
       }
 
       // After Each Test
-      if(options.after) {
-        test = after(test, function after(t) {
-          options.after.call(t, t);
-        });
+      if (options.after) {
+        test = after(test, call(options.after));
       }
 
       // Test
-      test([prefix, name].join(' > '), function it(t) {
-        fn.call(t, t);
-      });
+      test([prefix, name].join(' > '), call(fn));
     });
 
     // Teardown
-    if(options.teardown) {
-      tape('teardown', function after(t) {
-        options.teardown.call(t, t);
-      });
+    if (options.teardown) {
+      tape.test('teardown', call(options.teardown));
     }
   };
 }
@@ -72,4 +70,14 @@ function after(test, handler) {
       listener(t);
     });
   };
+}
+
+function expand(t, customAsserts) {
+  if(!customAsserts) {
+    return t;
+  }
+  Object.keys(customAsserts).forEach(function add(assert) {
+    t[assert] = customAsserts[assert];
+  });
+  return t;
 }
