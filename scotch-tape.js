@@ -11,9 +11,9 @@ function scotchTape(options) {
 
     function call(fn) {
       return function callFn(t) {
-        var expanded = mutableExtend(t, options.asserts || {});
+        var customT = mutableExtend(t, options.asserts || {});
 
-        fn.call(expanded, expanded);
+        fn.call(customT, customT);
       };
     }
 
