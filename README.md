@@ -2,9 +2,9 @@
 
 Helps write adhesive tape tests and better organize your test code. 
 
-## code
+## Code
 
-```
+```javascript
 var scotchTape = require('scotch-tape');
 var test = scotchTape({options});
 ```
@@ -20,7 +20,7 @@ var test = scotchTape({options});
 ## scotch-tape flavor
 
 #### Initialization
-```
+```javascript
 'use strict';
 
 var scotchTape = require('scotch-tape');
@@ -57,7 +57,8 @@ var test = scotchTape({
 });
 ```
 #### Sample Tests
-```
+
+```javascript
 test('scotch-tape tests', function test(it) {
   
   it('should get called', function should(t) {
@@ -72,7 +73,9 @@ test('scotch-tape tests', function test(it) {
   
 });
 ```
+
 #### Console Output
+
 ```
 TAP version 13
 # setup
@@ -99,7 +102,7 @@ teardown
 
 You can overload tape js tests to include custom assertions.
 
-```
+```javascript
 'use strict';
 
 var scotchTapeAsserts = require('scotch-tape/asserts');
@@ -116,8 +119,10 @@ var scotchTape = scotchTapeAsserts({
   
 });
 ```
+
 #### Sample Tests
-```
+
+```javascript
 var runBasicTests = scotchTape();
 
 runBasicTests('Global Tape Asserts', function test(it) {
@@ -139,6 +144,7 @@ runBasicTests('Global Tape Asserts', function test(it) {
 ```
 
 #### Console Output
+
 ```
 TAP version 13
 # Global Tape Asserts > should handle type

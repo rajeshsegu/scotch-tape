@@ -1,7 +1,7 @@
 {
   "name": "scotch-tape",
   "description": "wrapper to write better tape tests",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "author": "Rajesh Segu <rajesh.segu@gmail.com>",
   "keywords": [
     "tapejs",
@@ -30,7 +30,8 @@
   "licenses": "MIT",
   "main": "scotch-tape.js",
   "dependencies": {
-    "tape": "^4.0.0"
+    "tape": "^4.0.0",
+    "xtend": "^4.0.0"
   },
   "devDependencies": {
     "build-changelog": "^2.1.2",
