@@ -1,5 +1,5 @@
 'use strict';
-var extend = require('xtend');
+var mutableExtend = require('xtend/mutable');
 var tape = require('tape');
 
 module.exports = scotchTape;
@@ -11,7 +11,7 @@ function scotchTape(options) {
 
     function call(fn) {
       return function callFn(t) {
-        var expanded = extend(t, options.asserts || {});
+        var expanded = mutableExtend(t, options.asserts || {});
 
         fn.call(expanded, expanded);
       };
