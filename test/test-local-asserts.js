@@ -17,6 +17,7 @@ runBasicTests('scotch-tape tests', function test(it) {
     t.ok(true);
     t.end();
   });
+
   it('should support custom assert', function should(t) {
     t.ok(t.isValidName);
     t.isValidName('test');

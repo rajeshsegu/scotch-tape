@@ -30,7 +30,8 @@
   "licenses": "MIT",
   "main": "scotch-tape.js",
   "dependencies": {
-    "tape": "^4.0.0"
+    "tape": "^4.0.0",
+    "xtend": "^4.0.0"
   },
   "devDependencies": {
     "build-changelog": "^2.1.2",

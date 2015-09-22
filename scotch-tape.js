@@ -1,5 +1,5 @@
 'use strict';
-
+var extend = require('xtend');
 var tape = require('tape');
 
 module.exports = scotchTape;
@@ -11,8 +11,9 @@ function scotchTape(options) {
 
     function call(fn) {
       return function callFn(t) {
-        expand(t, options.asserts);
-        fn.call(t, t);
+        var expanded = extend(t, options.asserts || {});
+
+        fn.call(expanded, expanded);
       };
     }
 
@@ -50,10 +51,12 @@ function before(test, handler) {
   return function tapeTest(name, listener) {
     test(name, function (t) {
       var _end = t.end;
+
       t.end = function end() {
         t.end = _end;
         listener(t);
       };
+
       handler(t);
     });
   };
@@ -63,21 +66,13 @@ function after(test, handler) {
   return function tapeTest(name, listener) {
     test(name, function (t) {
       var _end = t.end;
+
       t.end = function end() {
         t.end = _end;
         handler(t);
       };
+
       listener(t);
     });
   };
-}
-
-function expand(t, customAsserts) {
-  if(!customAsserts) {
-    return t;
-  }
-  Object.keys(customAsserts).forEach(function add(assert) {
-    t[assert] = customAsserts[assert];
-  });
-  return t;
 }
