@@ -1,3 +1,6 @@
+[![Build Status](https://travis-ci.org/rajeshsegu/scotch-tape.svg?branch=master)](https://travis-ci.org/rajeshsegu/scotch-tape)
+[![Coverage Status](https://coveralls.io/repos/rajeshsegu/scotch-tape/badge.svg?branch=master&service=github)](https://coveralls.io/github/rajeshsegu/scotch-tape?branch=master)
+
 # scotch-tape
 
 Helps write adhesive tape tests and better organize your test code. 
